@@ -10,7 +10,7 @@ import UIKit
 import DropDown
 
 class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
     var selectedTrialType:Int = 0
     var selectedCrop:Int = 0
     var selectedYear:String = ""
@@ -23,6 +23,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var topTypeResults:[[String: Any]] = []
     var topTrialGroups = [Int:[String:Any]]()
     
+    @IBOutlet weak var trialTypeLabel: UILabel!
+    @IBOutlet weak var cropLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
     
     @IBOutlet weak var selectTrialType: UIButton!
     @IBOutlet weak var selectCrop: UIButton!
@@ -84,9 +87,11 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     self.trialtypes.append(object)
                 }
             }
+            self.trialtypes.sort {($0["TrialTypeName"] as! String) < ($1["TrialTypeName"] as! String)}
         }
         
         self.getData(url:"http://localhost:8000/client/data/TrialTypes.json", myCompletionHandler: myCompHand)
+        
         
         self.topTypeResults = []
         let myCompHandTopResults:(Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
@@ -126,7 +131,11 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 }
             }
             self.getData(url:"http://localhost:8000/client/data/Crops.json", myCompletionHandler: myCompHand)
+            self.trialTypeLabel.text = item
+            self.cropLabel.text = "Crop"
+            self.yearLabel.text = "Year"
         }
+        
         
         cropDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.selectedCrop = self.crops[index]["CropID"] as! Int
@@ -142,21 +151,39 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     for object in array {
                         if((object["CropID"] as! NSNumber).intValue == self.selectedCrop)
                         {
-                            self.years.append((object["Year"] as! NSNumber).stringValue)
+                            if(self.years.contains((object["Year"] as! NSNumber).stringValue) == false)
+                            {
+                                self.years.append((object["Year"] as! NSNumber).stringValue)
+                            }
                         }
                     }
                 }
             }
             self.getData(url:"http://localhost:8000/client/data/Years.json", myCompletionHandler: myCompHand)
+            self.cropLabel.text = item
+            self.yearLabel.text = "Year"
+        }
+        
+        yearDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            for year in self.years
+            {
+                if(item == year)
+                {
+                    self.selectedYear = year
+                }
+            }
+            self.yearLabel.text = item
         }
     }
+    
     
     func getData(url: String, myCompletionHandler: Any?){
         let urlString = url
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url, completionHandler: myCompletionHandler as! (Data?, URLResponse?, Error?) -> Void).resume()
-    }
+        
+     }
     
     func getTrialGroup(trialGroupID : Int) {
         let myCompHand:(Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
@@ -186,6 +213,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             if error != nil {
                 print(error!.localizedDescription)
             }
+            
             guard let data = data else { return }
             let json = try? JSONSerialization.jsonObject(with: data, options: [])
             if let array = json as? [[String: Any]] {
@@ -226,13 +254,15 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(topTrialGroups)
-        var trialNumber = topTypeResults[(topResultsCollection.indexPath(for: (sender as! UICollectionViewCell))?.row)!]["TopTrial"] as! Int
+        let trialNumber = topTypeResults[(topResultsCollection.indexPath(for: (sender as! UICollectionViewCell))?.row)!]["TopTrial"] as! Int
         (segue.destination as! TrialGroupViewController).passedTrialGrObj = self.topTrialGroups[trialNumber]!
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func didUnwindToMainView(_ sender: UIStoryboardSegue){
     }
 }
 

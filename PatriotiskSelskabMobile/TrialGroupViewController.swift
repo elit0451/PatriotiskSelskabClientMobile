@@ -15,8 +15,10 @@ extension UIView
     }
 }
 
-class TrialGroupViewController: UIViewController {
+class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     var passedTrialGrObj = [String: Any]()
+    var logChemName = [String]()
+    var logChemDosages = [Decimal]()
     
     @IBOutlet weak var trialGroupTop: UILabel!
     @IBOutlet weak var cropNameLbl: UILabel!
@@ -26,24 +28,28 @@ class TrialGroupViewController: UIViewController {
     @IBOutlet weak var chemicalView: UIView!
     @IBOutlet weak var treatmentCommentView: UIView!
     @IBOutlet weak var logChemCollection: UICollectionView!
-    @IBOutlet weak var logChemCell: UICollectionViewCell!
     @IBOutlet weak var similarCollection: UICollectionView!
-    @IBOutlet weak var similarResultCell: UICollectionViewCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(passedTrialGrObj)
+        
+        logChemCollection.delegate = self
+        logChemCollection.dataSource = self
+        
         trialGroupTop.text = "Trial Group " + (passedTrialGrObj["TrialGroupNr"] as! NSNumber).stringValue
         
         cropNameLbl.text = passedTrialGrObj["CropName"] as? String
         commentLbl.text = passedTrialGrObj["Comment"] as? String
         
-        var frameY:CGFloat = 34
+        var frameY:CGFloat = 8
+        
+        print(passedTrialGrObj)
         
         var stages = [[String:Any]]()
         
         var logDosages = [Decimal]()
-        for treatment in (passedTrialGrObj["Treatments"] as! [[String:Any]]) {
+        var treatments = passedTrialGrObj["Treatments"] as! [[String:Any]]
+        for treatment in treatments {
             var found = stages.contains {
                 ($0["Id"] as! NSNumber).intValue == (treatment["TreatmentID"] as! NSNumber).intValue
             }
@@ -91,7 +97,7 @@ class TrialGroupViewController: UIViewController {
         }
         
         for stage in stages{
-            var stageViewCopy = stageView.copyView()
+            let stageViewCopy = stageView.copyView()
             stageViewCopy.isHidden = false
             stageViewCopy.frame.origin.x = 0
             stageViewCopy.frame.origin.y = frameY
@@ -108,7 +114,7 @@ class TrialGroupViewController: UIViewController {
             frameY += stageViewCopy.frame.size.height
             for product in stage["Products"] as! [[String:Any]]
             {
-                var chemicalViewCopy = chemicalView.copyView()
+                let chemicalViewCopy = chemicalView.copyView()
                 chemicalViewCopy.isHidden = false
                 chemicalViewCopy.frame.origin.x = 0
                 chemicalViewCopy.frame.origin.y = frameY
@@ -124,7 +130,7 @@ class TrialGroupViewController: UIViewController {
                 frameY += chemicalViewCopy.frame.size.height
                 
             }
-            var treatmentCommentViewCopy = treatmentCommentView.copyView()
+            let treatmentCommentViewCopy = treatmentCommentView.copyView()
             treatmentCommentViewCopy.isHidden = false
             treatmentCommentViewCopy.frame.origin.x = 0
             treatmentCommentViewCopy.frame.origin.y = frameY
@@ -134,14 +140,36 @@ class TrialGroupViewController: UIViewController {
         }
         
         scrollView.contentSize = CGSize(width: 375, height: frameY)
+        
+        
+        for treatment in treatments {
+            if (treatment["DoseLog"] as! Bool == true)
+            {
+                logChemName.append(treatment["ProductName"] as! String)
+                logChemDosages.append((treatment["ProductDose"] as! NSNumber).decimalValue)
+            }
+        }
+        
+        logChemDosages.sort(by: { $0 < $1 })
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return logChemDosages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = logChemCollection.dequeueReusableCell(withReuseIdentifier: "logChemCell", for: indexPath) as! TrialCollectionViewCell
+        
+        cell.chemicalLbl.text = logChemName[indexPath.row]
+        cell.doseLbl.text = (logChemDosages[indexPath.row] as NSNumber).stringValue + " ml"
+        cell.layer.borderWidth = 2.0
+        cell.layer.borderColor = UIColor.init(red: 0.416, green: 0.745, blue: 0.953, alpha: 1).cgColor
+        
+        return cell
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-   
-
 }
