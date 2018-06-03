@@ -145,6 +145,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="searchBtn:" destination="h2X-Zr-vPB" eventType="touchUpInside" id="3I1-06-VVN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqA-Vz-AA0">
                                 <rect key="frame" x="225" y="140" width="152" height="37"/>
@@ -324,7 +327,7 @@
         <!--Trial Group View Controller-->
         <scene sceneID="El5-K6-lmz">
             <objects>
-                <viewController id="LE7-P7-MQ5" customClass="TrialGroupViewController" customModule="PatriotiskSelskabMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TrialGroupView" id="LE7-P7-MQ5" customClass="TrialGroupViewController" customModule="PatriotiskSelskabMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kTI-MB-v9p">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -334,11 +337,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="separatorLine" translatesAutoresizingMaskIntoConstraints="NO" id="0Sa-6u-Sh4">
-                                        <rect key="frame" x="453.5" y="43" width="300" height="0.0"/>
+                                        <rect key="frame" x="458.5" y="43" width="295" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="separatorLine" translatesAutoresizingMaskIntoConstraints="NO" id="HWR-hg-ZH5">
-                                        <rect key="frame" x="15.5" y="43" width="300" height="1"/>
+                                        <rect key="frame" x="15.5" y="43" width="295" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="infoRect" translatesAutoresizingMaskIntoConstraints="NO" id="4Fj-b4-02X">
@@ -563,12 +566,13 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                                                 <connections>
                                                     <outlet property="chemicalLbl" destination="2ev-j6-WVI" id="leF-aG-dnt"/>
                                                     <outlet property="weedLbl" destination="Kkb-eK-fbR" id="ye2-xO-oaR"/>
+                                                    <segue destination="LE7-P7-MQ5" kind="show" identifier="similarGroupSegue" id="cdA-MW-s2Q"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trial Group X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wpe-fD-PDZ">
-                                        <rect key="frame" x="322" y="30" width="117" height="26"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trial Group X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wpe-fD-PDZ">
+                                        <rect key="frame" x="313" y="30" width="143" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <color key="textColor" red="0.56862745100000001" green="0.76078431369999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -581,6 +585,17 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                                         <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ua7-hF-t4a">
+                                        <rect key="frame" x="26" y="8" width="30" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="FontAwesome5FreeSolid" family="Font Awesome 5 Free" pointSize="21"/>
+                                        <state key="normal" title="">
+                                            <color key="titleColor" red="0.56862745100000001" green="0.76078431369999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="pr9-BX-h6a" kind="unwind" unwindAction="didUnwindToMainView:" id="ttR-bQ-Mjc"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3gx-0K-SAT">
@@ -591,12 +606,12 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                                         <rect key="frame" x="0.0" y="0.0" width="768" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbC-eH-8ce" userLabel="Back">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbC-eH-8ce" userLabel="Back">
                                         <rect key="frame" x="23" y="24" width="28" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="backArrow"/>
                                         <connections>
-                                            <segue destination="pr9-BX-h6a" kind="unwind" unwindAction="didUnwindToMainView:" id="eOL-Gd-SMj"/>
+                                            <segue destination="pr9-BX-h6a" kind="unwind" unwindAction="didUnwindToTrialGroupView:" id="OYP-5D-nby"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eAn-V2-lnI" userLabel="Logout">
@@ -611,6 +626,14 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                                         <rect key="frame" x="246" y="12" width="277" height="53"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqu-jX-9Uq" userLabel="chemicalBack">
+                                        <rect key="frame" x="23" y="24" width="28" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="backArrow"/>
+                                        <connections>
+                                            <segue destination="pr9-BX-h6a" kind="unwind" unwindAction="didUnwindToChemicalsView:" id="cc2-cB-tBF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="BGk-rW-Rak"/>
@@ -620,6 +643,8 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                         <viewLayoutGuide key="safeArea" id="1rR-RN-o0U"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="zbC-eH-8ce" id="Xvb-6Y-qWt"/>
+                        <outlet property="chemicalBackBtn" destination="Dqu-jX-9Uq" id="xPP-sn-dJ8"/>
                         <outlet property="chemicalView" destination="qLS-0K-Tco" id="QLr-4N-soq"/>
                         <outlet property="commentLbl" destination="4Wx-nE-avX" id="ZLl-sD-QDz"/>
                         <outlet property="cropNameLbl" destination="KD5-X0-LD5" id="9xC-TS-bLz"/>
@@ -640,7 +665,7 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
         <!--Search View Controller-->
         <scene sceneID="05n-kq-Nw8">
             <objects>
-                <viewController id="ah4-FM-0O2" customClass="SearchViewController" customModule="PatriotiskSelskabMobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchChemicalView" id="ah4-FM-0O2" customClass="SearchViewController" customModule="PatriotiskSelskabMobile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7GU-yt-P6A">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -654,14 +679,14 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="backArrow"/>
                                 <connections>
-                                    <segue destination="qvU-Ue-ZOb" kind="unwind" unwindAction="didUnwindToMainView:" id="koY-ST-QTr"/>
+                                    <segue destination="qvU-Ue-ZOb" kind="unwind" unwindAction="didUnwindToMainView:" id="Zkf-6l-w79"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="separatorLine" translatesAutoresizingMaskIntoConstraints="NO" id="CWD-iV-k3T">
                                 <rect key="frame" x="409.5" y="241.5" width="346" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TOP RESULTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eci-fp-HQj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CHEMICALS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eci-fp-HQj">
                                 <rect key="frame" x="23" y="275.5" width="129" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
@@ -702,21 +727,33 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="searchBtn:" destination="ah4-FM-0O2" eventType="touchUpInside" id="fTI-9T-xlZ"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKd-Mb-Wek">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKd-Mb-Wek" userLabel="cropDropDown">
                                 <rect key="frame" x="225" y="140" width="152" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="selectBox"/>
+                                <connections>
+                                    <action selector="selectCropClick:" destination="ah4-FM-0O2" eventType="touchUpInside" id="bTm-NE-Pf6"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhv-3W-Jzj">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhv-3W-Jzj" userLabel="yearDropDown">
                                 <rect key="frame" x="394" y="140" width="152" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="selectBox"/>
+                                <connections>
+                                    <action selector="selectYearClick:" destination="ah4-FM-0O2" eventType="touchUpInside" id="K3Q-31-Pdc"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn4-lg-qQn">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yn4-lg-qQn" userLabel="trialTypeDropDown">
                                 <rect key="frame" x="55" y="140" width="152" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="selectBox"/>
+                                <connections>
+                                    <action selector="selectTrialTypeClick:" destination="ah4-FM-0O2" eventType="touchUpInside" id="Y8M-09-RI7"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ceI-xi-oI3">
                                 <rect key="frame" x="35" y="335" width="699" height="648"/>
@@ -729,20 +766,17 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addYearCell" id="Bha-Cs-mN7" customClass="yearCollectionViewCell" customModule="PatriotiskSelskabMobile" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="chemicalCell" id="Bha-Cs-mN7" customClass="TopResultCollectionViewCell" customModule="PatriotiskSelskabMobile" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="215.5" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="215.5" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUe-fz-exd">
-                                                    <rect key="frame" x="0.0" y="39" width="216" height="50"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chemicalCell" translatesAutoresizingMaskIntoConstraints="NO" id="bcz-Z4-IqW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="216" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="FontAwesome5FreeSolid" family="Font Awesome 5 Free" pointSize="51"/>
-                                                    <color key="textColor" red="0.81960784313725488" green="0.8784313725490196" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chemical 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vq4-AZ-Y6T">
                                                     <rect key="frame" x="0.0" y="39" width="216" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -752,340 +786,61 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="yearLbl" destination="vq4-AZ-Y6T" id="USj-b8-9Ir"/>
+                                            <outlet property="trialTypeLbl" destination="vq4-AZ-Y6T" id="gHq-U4-ryt"/>
+                                            <segue destination="LE7-P7-MQ5" kind="show" identifier="chemicalSegue" id="DqT-qM-WmV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SK7-ck-S6T">
+                                <rect key="frame" x="404" y="148" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Crop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bg-MA-1ON">
+                                <rect key="frame" x="235" y="148" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trial Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLu-bj-dyo">
+                                <rect key="frame" x="67" y="148" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="EOl-nK-1Sm"/>
                     </view>
+                    <connections>
+                        <outlet property="chemicalsCollection" destination="ceI-xi-oI3" id="wUV-0M-JgS"/>
+                        <outlet property="cropLabel" destination="5bg-MA-1ON" id="UUQ-bm-W3y"/>
+                        <outlet property="selectCrop" destination="jKd-Mb-Wek" id="jli-aS-cvC"/>
+                        <outlet property="selectTrialType" destination="Yn4-lg-qQn" id="fre-9O-2ft"/>
+                        <outlet property="selectYear" destination="lhv-3W-Jzj" id="ZDU-yE-Ebg"/>
+                        <outlet property="trialTypeLabel" destination="WLu-bj-dyo" id="BF8-yl-mMH"/>
+                        <outlet property="yearLabel" destination="SK7-ck-S6T" id="UF1-E1-MIq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="df5-Da-car" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qvU-Ue-ZOb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2076" y="40"/>
-        </scene>
-        <!--Trial Group View Controller-->
-        <scene sceneID="gu0-Gc-MY3">
-            <objects>
-                <viewController id="Bxx-I6-R2f" customClass="TrialGroupViewController" customModule="PatriotiskSelskabMobile" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="RiQ-H7-Mid">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3X-aR-YcU">
-                                <rect key="frame" x="0.0" y="81" width="768" height="1176"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="separatorLine" translatesAutoresizingMaskIntoConstraints="NO" id="do7-hR-cWQ">
-                                        <rect key="frame" x="453.5" y="43" width="300" height="0.0"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="separatorLine" translatesAutoresizingMaskIntoConstraints="NO" id="sYS-e2-UH0">
-                                        <rect key="frame" x="15.5" y="43" width="300" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="infoRect" translatesAutoresizingMaskIntoConstraints="NO" id="Nv8-FM-aKN">
-                                        <rect key="frame" x="34" y="84" width="700" height="312"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="TrialGroupInfoView" translatesAutoresizingMaskIntoConstraints="NO" id="oAe-f7-eEb">
-                                        <rect key="frame" x="359" y="84" width="375" height="312"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="stageDateView" translatesAutoresizingMaskIntoConstraints="NO" id="TG1-FP-ZFB" userLabel="StageView">
-                                                <rect key="frame" x="0.0" y="146" width="374" height="20"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STAGE 10-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huY-3B-sQZ">
-                                                        <rect key="frame" x="38" y="-3" width="118" height="26"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
-                                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20-12-2018" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jU-VX-KKR">
-                                                        <rect key="frame" x="209" y="-3" width="141" height="26"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
-                                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="ChemicalsView" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-4Z-eYz" userLabel="ChemicalView">
-                                                <rect key="frame" x="0.0" y="143" width="375" height="25"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CHEMICAL 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ur-Ys-tTX">
-                                                        <rect key="frame" x="52" y="0.0" width="113" height="26"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
-                                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1,45 ml" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jIh-i8-bie">
-                                                        <rect key="frame" x="157" y="4" width="192" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="13"/>
-                                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="commentView" translatesAutoresizingMaskIntoConstraints="NO" id="VLc-q4-tJX" userLabel="TreatmentCommentView">
-                                                <rect key="frame" x="0.0" y="131" width="375" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COMMENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1g-fz-fjH">
-                                                        <rect key="frame" x="52" y="4" width="113" height="26"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="14"/>
-                                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is treatment at stage 10 to 12." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpG-Js-EVV">
-                                                        <rect key="frame" x="52" y="29" width="305" height="18"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
-                                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TREATMENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3J-Lx-Wy8">
-                                                <rect key="frame" x="18" y="8" width="150" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="20"/>
-                                                <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </scrollView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="infoLine" translatesAutoresizingMaskIntoConstraints="NO" id="nXu-wj-gDg">
-                                        <rect key="frame" x="63" y="164.5" width="269" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CROP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVV-nq-4lE">
-                                        <rect key="frame" x="63" y="134" width="111" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
-                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="COMMENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzp-n2-ycO">
-                                        <rect key="frame" x="64" y="181" width="175" height="14"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="16"/>
-                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dV2-3Y-7Vm">
-                                        <rect key="frame" x="64" y="210" width="271" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <string key="text">This is Trial group 2. 
-Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
-                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
-                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weed 2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DfJ-PD-IKF">
-                                        <rect key="frame" x="201" y="134" width="135" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="16"/>
-                                        <color key="textColor" red="0.58431372550000005" green="0.59215686270000001" blue="0.65098039220000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="L8S-P0-H9g" userLabel="LogChem Collection View">
-                                        <rect key="frame" x="41.5" y="442.5" width="684" height="104"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hpP-8l-4st">
-                                            <size key="itemSize" width="121" height="104"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="logChemCell" id="sWs-2g-Pca" customClass="TrialCollectionViewCell" customModule="PatriotiskSelskabMobile" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="121" height="104"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="104"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chemical 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0f-RP-yNL">
-                                                            <rect key="frame" x="23" y="26" width="76" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1 ml" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e61-cr-SA8" userLabel="Dose Lbl">
-                                                            <rect key="frame" x="22.5" y="59.5" width="76" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                            <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="separatorLine" translatesAutoresizingMaskIntoConstraints="NO" id="cme-zb-q2k">
-                                                            <rect key="frame" x="20" y="51" width="81" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                </view>
-                                                <color key="backgroundColor" red="0.96078431369999995" green="1" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <connections>
-                                                    <outlet property="chemicalLbl" destination="a0f-RP-yNL" id="J9L-aC-8Vk"/>
-                                                    <outlet property="doseLbl" destination="e61-cr-SA8" id="TGE-jB-aW0"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="charts" translatesAutoresizingMaskIntoConstraints="NO" id="5vx-JS-MI2">
-                                        <rect key="frame" x="48.5" y="585" width="670" height="208"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="separatorLine" translatesAutoresizingMaskIntoConstraints="NO" id="xgG-Ai-D4y">
-                                        <rect key="frame" x="409" y="858.5" width="346" height="0.0"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSW-AF-Vgw">
-                                        <rect key="frame" x="372" y="848" width="21" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="FontAwesome5FreeSolid" family="Font Awesome 5 Free" pointSize="21"/>
-                                        <color key="textColor" red="0.56862745100000001" green="0.76078431369999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="separatorLine" translatesAutoresizingMaskIntoConstraints="NO" id="5Tu-R6-xEq">
-                                        <rect key="frame" x="15" y="858.5" width="342.5" height="1"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SIMILAR RESULTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6t-qW-Sm2">
-                                        <rect key="frame" x="23" y="889" width="174" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Verdana-Bold" family="Verdana" pointSize="15"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nyG-8d-Slt" userLabel="SimilarResultsCollection View">
-                                        <rect key="frame" x="41.5" y="948" width="684" height="208"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SLs-Ik-0E7">
-                                            <size key="itemSize" width="121" height="104"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="similarResultsCell" id="ZAX-6O-Ch6">
-                                                <rect key="frame" x="0.0" y="0.0" width="121" height="104"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="104"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chemical 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLc-1q-geY">
-                                                            <rect key="frame" x="23" y="26" width="76" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WEED 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5Z-hG-M0t">
-                                                            <rect key="frame" x="22.5" y="51.5" width="76" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                            <color key="textColor" red="0.63529411759999999" green="0.6588235294" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="qYO-VF-UyJ">
-                                                            <rect key="frame" x="20" y="51" width="81" height="1"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                </view>
-                                                <color key="backgroundColor" red="0.96078431369999995" green="1" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Trial Group X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwY-q8-3I5">
-                                        <rect key="frame" x="322" y="30" width="117" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                        <color key="textColor" red="0.56862745100000001" green="0.76078431369999999" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </scrollView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OZw-kN-o8j">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="97"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="headerRect" translatesAutoresizingMaskIntoConstraints="NO" id="OBa-Vc-Gsq">
-                                        <rect key="frame" x="0.0" y="0.0" width="768" height="77"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajT-yW-Nzq" userLabel="Back">
-                                        <rect key="frame" x="23" y="24" width="28" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="backArrow"/>
-                                        <connections>
-                                            <segue destination="JnL-3C-pXH" kind="unwind" unwindAction="didUnwindToMainView:" id="wIi-0v-Unm"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbA-Lk-1hz" userLabel="Logout">
-                                        <rect key="frame" x="693" y="22" width="33" height="33"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="FontAwesome5FreeSolid" family="Font Awesome 5 Free" pointSize="33"/>
-                                        <state key="normal" title="">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="agro-planner-full" translatesAutoresizingMaskIntoConstraints="NO" id="PDC-lf-gez">
-                                        <rect key="frame" x="246" y="12" width="277" height="53"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <viewLayoutGuide key="safeArea" id="bT5-8D-bVu"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="itz-Im-g1g"/>
-                    </view>
-                    <connections>
-                        <outlet property="chemicalView" destination="wmo-4Z-eYz" id="PSb-5Z-Xjt"/>
-                        <outlet property="commentLbl" destination="dV2-3Y-7Vm" id="JvL-rG-YYu"/>
-                        <outlet property="cropNameLbl" destination="DfJ-PD-IKF" id="AUP-vL-yOz"/>
-                        <outlet property="logChemCollection" destination="L8S-P0-H9g" id="385-0p-qPt"/>
-                        <outlet property="scrollView" destination="oAe-f7-eEb" id="E4V-Iw-UGb"/>
-                        <outlet property="similarCollection" destination="nyG-8d-Slt" id="FP5-9o-IGu"/>
-                        <outlet property="stageView" destination="TG1-FP-ZFB" id="ub8-MB-Q4E"/>
-                        <outlet property="treatmentCommentView" destination="VLc-q4-tJX" id="x2R-TC-JLP"/>
-                        <outlet property="trialGroupTop" destination="cwY-q8-3I5" id="dPP-fw-9zk"/>
-                    </connections>
-                </viewController>
-                <exit id="JnL-3C-pXH" userLabel="Exit" sceneMemberID="exit"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q1R-4d-h6F" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1379" y="-626"/>
+            <point key="canvasLocation" x="2075.78125" y="39.84375"/>
         </scene>
     </scenes>
     <resources>
         <image name="Line" width="281" height="1"/>
-        <image name="Line LogChem" width="82" height="1"/>
+        <image name="Line LogChem" width="81" height="1"/>
         <image name="agro-planner-full" width="1865" height="356"/>
         <image name="backArrow" width="13" height="22"/>
         <image name="charts" width="670" height="208"/>
+        <image name="chemicalCell" width="216" height="129"/>
         <image name="headerRect" width="377" height="56"/>
         <image name="infoLine" width="297" height="1"/>
         <image name="infoRect" width="375" height="297"/>
@@ -1094,4 +849,7 @@ Trial 1 has 3 treatments - stage 10, 16, 18.  </string>
         <image name="separatorLine" width="157" height="2"/>
         <image name="topResultRect" width="216" height="129"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="DqT-qM-WmV"/>
+    </inferredMetricsTieBreakers>
 </document>
