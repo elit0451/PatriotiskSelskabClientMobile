@@ -12,6 +12,7 @@
 		3A5DC3C020B3F0C100609B96 /* DropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5DC3BC20B3EFFF00609B96 /* DropDown.framework */; };
 		3A5DC3C120B3F0C100609B96 /* DropDown.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5DC3BC20B3EFFF00609B96 /* DropDown.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3A5DC3C720B4060800609B96 /* TopResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5DC3C620B4060800609B96 /* TopResultCollectionViewCell.swift */; };
+		3A7A8D6820C2BC1600381328 /* TrialGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A8D6720C2BC1600381328 /* TrialGroupViewController.swift */; };
 		3AACE33F20BEBFF500866721 /* fa-regular-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AACE33C20BEBFF200866721 /* fa-regular-400.ttf */; };
 		3AACE34020BEBFF500866721 /* fa-brands-400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AACE33D20BEBFF300866721 /* fa-brands-400.ttf */; };
 		3AACE34120BEBFF500866721 /* fa-solid-900.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AACE33E20BEBFF400866721 /* fa-solid-900.ttf */; };
@@ -19,7 +20,6 @@
 		3AC1438E20B3591A005B704A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1438D20B3591A005B704A /* MainViewController.swift */; };
 		3AC1439120B3591A005B704A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1438F20B3591A005B704A /* Main.storyboard */; };
 		3AC1439620B3591B005B704A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1439420B3591B005B704A /* LaunchScreen.storyboard */; };
-		3AC143A120B37C88005B704A /* TrialGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC143A020B37C88005B704A /* TrialGroupViewController.swift */; };
 		3AC143A320B37C95005B704A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC143A220B37C95005B704A /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +42,7 @@
 		3A31DE0520BF065900B0AABF /* TrialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialCollectionViewCell.swift; sourceTree = "<group>"; };
 		3A5DC3BC20B3EFFF00609B96 /* DropDown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropDown.framework; sourceTree = "<group>"; };
 		3A5DC3C620B4060800609B96 /* TopResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopResultCollectionViewCell.swift; sourceTree = "<group>"; };
+		3A7A8D6720C2BC1600381328 /* TrialGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrialGroupViewController.swift; sourceTree = "<group>"; };
 		3AACE33C20BEBFF200866721 /* fa-regular-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-regular-400.ttf"; sourceTree = "<group>"; };
 		3AACE33D20BEBFF300866721 /* fa-brands-400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-brands-400.ttf"; sourceTree = "<group>"; };
 		3AACE33E20BEBFF400866721 /* fa-solid-900.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fa-solid-900.ttf"; sourceTree = "<group>"; };
@@ -51,7 +52,6 @@
 		3AC1439020B3591A005B704A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AC1439520B3591B005B704A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AC1439720B3591B005B704A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3AC143A020B37C88005B704A /* TrialGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialGroupViewController.swift; sourceTree = "<group>"; };
 		3AC143A220B37C95005B704A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,8 +97,8 @@
 				3AACE33E20BEBFF400866721 /* fa-solid-900.ttf */,
 				3AC1439420B3591B005B704A /* LaunchScreen.storyboard */,
 				3AC1439720B3591B005B704A /* Info.plist */,
-				3AC143A020B37C88005B704A /* TrialGroupViewController.swift */,
 				3A31DE0520BF065900B0AABF /* TrialCollectionViewCell.swift */,
+				3A7A8D6720C2BC1600381328 /* TrialGroupViewController.swift */,
 				3AC143A220B37C95005B704A /* SearchViewController.swift */,
 			);
 			path = PatriotiskSelskabMobile;
@@ -180,9 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A5DC3C720B4060800609B96 /* TopResultCollectionViewCell.swift in Sources */,
+				3A7A8D6820C2BC1600381328 /* TrialGroupViewController.swift in Sources */,
 				3A31DE0620BF065900B0AABF /* TrialCollectionViewCell.swift in Sources */,
 				3AC1438E20B3591A005B704A /* MainViewController.swift in Sources */,
-				3AC143A120B37C88005B704A /* TrialGroupViewController.swift in Sources */,
 				3AC143A320B37C95005B704A /* SearchViewController.swift in Sources */,
 				3AC1438C20B3591A005B704A /* AppDelegate.swift in Sources */,
 			);
