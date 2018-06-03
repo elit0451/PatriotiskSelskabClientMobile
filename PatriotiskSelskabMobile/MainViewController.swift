@@ -19,7 +19,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     let yearDropDown = DropDown()
     var trialtypes:[[String: Any]] = []
     var crops:[[String: Any]] = []
-    var years:[String] = []
+    var years:[[String:Any]] = []
     var topTypeResults:[[String: Any]] = []
     var topTrialGroups = [Int:[String:Any]]()
     
@@ -30,6 +30,22 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var selectTrialType: UIButton!
     @IBOutlet weak var selectCrop: UIButton!
     @IBOutlet weak var selectYear: UIButton!
+    
+    @IBAction func searchBtn(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        var vc:Any
+        vc = sb.instantiateViewController(withIdentifier: "SearchChemicalView") as! SearchViewController
+        (vc as! SearchViewController).passedTrialType = self.trialTypeLabel.text!
+        (vc as! SearchViewController).passedCrop = self.cropLabel.text!
+        (vc as! SearchViewController).passedYears = self.years
+        (vc as! SearchViewController).passedYear = self.selectedYear
+        (vc as! SearchViewController).trialtypes = self.trialtypes
+        (vc as! SearchViewController).crops = self.crops
+        (vc as! SearchViewController).years = self.years
+        
+        self.present(vc as! UIViewController, animated: true, completion: nil)
+    }
+    
     
     @IBOutlet weak var topResultsCollection: UICollectionView!
     
@@ -59,9 +75,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         for year in years
         {
-            yearDropDown.dataSource.append(year)
+            yearDropDown.dataSource.append((year["Year"] as! NSNumber).stringValue)
         }
-        self.years.sort(by: { $0 > $1 })
+        self.years.sort(by:{($0["Year"] as! NSNumber).stringValue > ($1["Year"] as! NSNumber).stringValue})
         yearDropDown.show()
     }
     
@@ -91,7 +107,6 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
         
         self.getData(url:"http://localhost:8000/client/data/TrialTypes.json", myCompletionHandler: myCompHand)
-        
         
         self.topTypeResults = []
         let myCompHandTopResults:(Data?, URLResponse?, Error?) -> Void = { (data, response, error) in
@@ -151,9 +166,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     for object in array {
                         if((object["CropID"] as! NSNumber).intValue == self.selectedCrop)
                         {
-                            if(self.years.contains((object["Year"] as! NSNumber).stringValue) == false)
+                            if(self.years.contains(where: { ($0["Year"] as! NSNumber).stringValue == (object["Year"] as! NSNumber).stringValue}) == false)
                             {
-                                self.years.append((object["Year"] as! NSNumber).stringValue)
+                                self.years.append(object)
                             }
                         }
                     }
@@ -167,9 +182,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         yearDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             for year in self.years
             {
-                if(item == year)
+                if(item == (year["Year"] as! NSNumber).stringValue)
                 {
-                    self.selectedYear = year
+                    self.selectedYear = (year["Year"] as! NSNumber).stringValue
                 }
             }
             self.yearLabel.text = item
@@ -256,7 +271,9 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let trialNumber = topTypeResults[(topResultsCollection.indexPath(for: (sender as! UICollectionViewCell))?.row)!]["TopTrial"] as! Int
         (segue.destination as! TrialGroupViewController).passedTrialGrObj = self.topTrialGroups[trialNumber]!
+        (segue.destination as! TrialGroupViewController).selectedGroupsArray = [[String:Any]]()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
