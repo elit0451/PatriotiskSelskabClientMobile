@@ -17,10 +17,13 @@ extension UIView
 
 class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     var passedTrialGrObj = [String: Any]()
+    var selectedGroupsArray:[[String: Any]] = []
     var similarTrialGroups = [Int:[String: Any]]()
+    var similarGroups:[[String: Any]] = []
     var logChemName = [String]()
     var logChemDosages = [Decimal]()
     var frameHeight:CGFloat = 1176
+    var isChemical = false
     
     @IBOutlet weak var trialGroupTop: UILabel!
     @IBOutlet weak var cropNameLbl: UILabel!
@@ -33,6 +36,10 @@ class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var similarCollection: UICollectionView!
     @IBOutlet weak var pageScrollView: UIScrollView!
     
+    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var chemicalBackBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getSimilarTrialGroups()
@@ -43,7 +50,14 @@ class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICo
         similarCollection.delegate = self
         similarCollection.dataSource = self
         
+        if(selectedGroupsArray.count > 0){
+            backButton.isHidden = false
+        }
+        if(isChemical == true){
+            chemicalBackBtn.isHidden = false
+        }
         
+        selectedGroupsArray.append(passedTrialGrObj)
         
         trialGroupTop.text = "Trial Group " + (passedTrialGrObj["TrialGroupNr"] as! NSNumber).stringValue
         
@@ -67,6 +81,7 @@ class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICo
             var newStages = [[String:Any]]()
             for var stage in stages
             {
+                var logDosageTxt = ""
                 var stageProducts = stage["Products"] as! [[String:Any]]
                 if ((stage["Id"] as! NSNumber) == (treatment["TreatmentID"] as! NSNumber)) {
                     var dose:Any
@@ -74,6 +89,13 @@ class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICo
                     {
                         dose = "LOG"
                         logDosages.append((treatment["ProductDose"] as! NSNumber).decimalValue)
+                        
+                        logDosages.sort(by: { $0 > $1 })
+                        for logChemDosage in logDosages{
+                            
+                            logDosageTxt += (logChemDosage as NSNumber).stringValue + " | "
+                        }
+                        logDosageTxt.removeLast(2)
                     }
                     else
                     {
@@ -90,13 +112,6 @@ class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICo
                     }
                 }
                 stage["Products"] = stageProducts
-                var logDosageTxt = ""
-                logDosages.sort(by: { $0 > $1 })
-                for logChemDosage in logDosages{
-                    
-                    logDosageTxt += (logChemDosage as NSNumber).stringValue + " | "
-                }
-                logDosageTxt.removeLast(2)
                 stage["LogChemTxt"] = logDosageTxt + " ml"
                 newStages.append(stage)
             }
@@ -187,7 +202,9 @@ class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
          let cell = similarCollection.dequeueReusableCell(withReuseIdentifier: "similarResultsCell", for: indexPath) as! TrialCollectionViewCell
-        var similarGroups = Array(self.similarTrialGroups.values)
+        
+        similarGroups = Array(self.similarTrialGroups.values)
+        similarGroups.sort { ($0["TrialGroupID"] as! Int) < ($1["TrialGroupID"] as! Int) }
         
         cell.chemicalLbl.text = ((similarGroups[indexPath.row])["Treatments"] as! [[String:Any]])[0]["ProductName"] as! String
         cell.weedLbl.text = (similarGroups[indexPath.row])["CropName"] as! String
@@ -196,6 +213,16 @@ class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.layer.borderColor = UIColor.init(red: 0.416, green: 0.745, blue: 0.953, alpha: 1).cgColor
         
         return cell
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "similarGroupSegue" {
+        let trialID = similarGroups[(similarCollection.indexPath(for: (sender as! UICollectionViewCell))?.row)!]["TrialGroupID"] as! Int
+            selectedGroupsArray.removeLast(self.selectedGroupsArray.count - 1)
+            (segue.destination as! TrialGroupViewController).passedTrialGrObj = self.similarTrialGroups[trialID]!
+            (segue.destination as! TrialGroupViewController).selectedGroupsArray = self.selectedGroupsArray
+        }
+        
     }
     
     func getData(url: String, myCompletionHandler: Any?){
@@ -266,5 +293,8 @@ class TrialGroupViewController: UIViewController, UICollectionViewDelegate, UICo
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func didUnwindToTrialGroupView(_ sender: UIStoryboardSegue){
     }
 }
